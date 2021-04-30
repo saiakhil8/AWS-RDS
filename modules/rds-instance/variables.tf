@@ -69,7 +69,7 @@ variable "tags"{
 }
 
 variable "isMultiAZ"{
-  type =string
+  type =bool
   description = "is multiAz required"
 }
 
@@ -79,7 +79,7 @@ variable "snapshotIdentifier"{
 }
 
 variable "isPerformanceInsightsEnabled"{
-  type =string
+  type =bool
   description = "is PerformanceInsights required"
 }
 

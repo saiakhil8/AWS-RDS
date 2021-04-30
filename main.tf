@@ -2,6 +2,12 @@ provider "aws" {
   version = "~> 3.2.7"
 }
 
+module "secret_manager"{
+  source = "./modules/secret-manager"
+  tags   = var.tags
+  name   = var.secret_name
+}
+
 module "vpc" {
   source = "./modules/vpc"
   createVpc                 = (var.vpcExists) ? false : true
@@ -26,7 +32,7 @@ module "rds_instance" {
   rdsInstanceClass               = var.rdsInstanceClass
   rdsDatabaseName                = (var.rdsDatabaseName == "") ? null : var.rdsDatabaseName
   rdsUserName                    = var.rdsUserName
-  rdsPassword                    = var.rdsPassword
+  rdsPassword                    = module.secret_manager.secret
   isDbSubnetGroupExists          = var.isDbSubnetGroupExists
   dbSubNetGroupName              = var.dbSubNetGroupName
   licenseModel                   = lookup(var.licenseModel,var.rdsEngine,"license-included")
