@@ -6,7 +6,7 @@ provider "aws" {
 }
 
 module "vpc" {
-  source = "./vpc"
+  source = "./modules/vpc"
   createVpc                 = (var.vpcExists) ? false : true
   vpcCIDRBlock              = var.vpcCIDRBlock
   instanceTenancy           = var.instanceTenancy
@@ -21,7 +21,7 @@ module "vpc" {
 }
 
 module "rds_instance" {
-  source = "./rds-instance"
+  source = "./modules/rds-instance"
   rdsAllocatedStorage            = var.rdsAllocatedStorage
   rdsStorageType                 = var.rdsStorageType
   rdsEngine                      = var.rdsEngine
