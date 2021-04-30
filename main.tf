@@ -1,8 +1,5 @@
 provider "aws" {
-  version = "~> 2.0"
-  region  = var.region
-  access_key = var.awsAccessKey
-  secret_key = var.awsSecretAccessKey
+  version = "~> 3.2.7"
 }
 
 module "vpc" {
